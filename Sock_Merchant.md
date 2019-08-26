@@ -36,3 +36,35 @@ function sockMerchant(n, ar) {
 }
 ```
 
+### Dictionary approach
+
+```js
+function sockMerchant(n, ar) {
+	let pairs = 0;
+	const colors = ar.reduce((acc, val) => {
+		(!!acc[val] ? acc[val] += 1 : acc[val] = 1)
+		return acc;
+	}, {});
+
+	Object.keys(colors).forEach( n => {
+		let _pair = parseInt( colors[n] / 2 );
+		if ( _pair >= 1 ) pairs += _pair;
+	});
+
+	return pairs
+}
+
+```
+
+#### description
+In the reduce callback we setup an accumulator and the current value - doing this on the fly we check to see if our current value exists as a key in our accumulator object, if so we add one to it if not we create the key and initialize it with 1.
+
+Let’s not forget to add the empty object as the second argument and return the accumulator after each iteration.
+
+Now that we have an object with each color as a key ket’s loop through it.
+
+We iterate through each key and we create a local pair variable. We initialize the pair by dividing the colors n key value by 2
+
+Now we can check if the pair value is greater or at least equal to 1. If true we can increment the total pairs value on line 17 with the number of pairs found
+
+We can then simply return the total count after the loop. Running it in the terminal gives us again 3 pairs - If that went too fast let’s add to our console statement and run it again

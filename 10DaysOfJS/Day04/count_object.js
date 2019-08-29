@@ -6,7 +6,7 @@
  */
 function getCount(objects) {
     let count = 0;
-    for (let obj in objects) {
+    for (let index in objects) {
         if (objects[index].x === objects[index].y) {
             count++
         }
